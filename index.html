@@ -4,24 +4,77 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lista de Tarefas</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 <style>
   body {
     font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  #container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
   }
   #taskInput {
     margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 86%;
+  }
+  #addTaskButton {
+    padding: 8px 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  #addTaskButton i {
+    margin-right: 5px;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
   }
   li {
-   margin: 10px; 
+    margin: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
-  
+  button {
+    padding: 6px 10px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
 </style>
 </head>
 <body>
-<h1>Lista de Tarefas</h1>
-<input type="text" id="taskInput" placeholder="Adicionar nova tarefa">
-<button id="addTaskButton">Adicionar Tarefa</button>
-<ul id="taskList"></ul>
+<div id="container">
+  <h1>Lista de Tarefas</h1>
+  <input type="text" id="taskInput" placeholder="Adicionar nova tarefa">
+  <button id="addTaskButton"><i class="fas fa-plus"></i> Adicionar Tarefa</button>
+  <ul id="taskList"></ul>
+</div>
 
 <script>
   class TaskManager {
@@ -44,7 +97,7 @@
         const li = document.createElement('li');
         li.textContent = task;
         const removeButton = document.createElement('button');
-        removeButton.textContent = 'Remover';
+        removeButton.innerHTML = '<i class="fas fa-trash"></i>';
         removeButton.addEventListener('click', () => {
           this.removeTask(index);
           this.renderTasks();
